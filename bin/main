@@ -1,2 +1,29 @@
 #!/usr/bin/env ruby
-puts "Hello World"
+require 'rainbow'
+require_relative '../lib/linter_error'
+
+lint_error = LinterError.new(ARGV[0])
+lint_error.run
+
+
+# let(:red) { Rainbow("#{no_offence} ").red}
+
+unless lint_error.check_path.file_lines.empty?
+    puts 'Hello, Welcome to Ruby Linter'
+else
+    puts 'Invalid file name.'
+end
+
+if lint_error.error.empty? && lint_error.check_path.err_msg.empty?
+    puts Rainbow('No offenses Detected').green
+else
+    lint_error.error.uniq.each do |offense|
+        puts Rainbow("#{lint_error.check_path.file_name}").blue + " : " + Rainbow("#{offense}").red
+    end
+
+    no_offence = lint_error.error.size
+    red = "#{no_offence} offenses"
+    red = Rainbow(red).red
+    no_offence == 1 ? (puts "Total " + "#{red[0..-6]} "+ "Detected!") : (puts "Total " + "#{red} " + "Detected!")
+end
+
