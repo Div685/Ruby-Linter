@@ -1,1 +1,6 @@
-puts "dummy_test file to test the linters"
+
+class Test
+  def test_method
+    puts "Test method"
+  end
+end
