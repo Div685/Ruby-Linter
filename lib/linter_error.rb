@@ -8,6 +8,7 @@ class LinterError
     @check_path = FileReader.new(file_path)
     @error = []
     @helper = Helper.new
+    @snake_case = /[a-z]+_+([:lower:]+)*/ #/^[[a-z][[:lower:]]_.?!]+$/.freeze
   end
 
   def run
@@ -16,6 +17,9 @@ class LinterError
     check_end_file_empty_line
     check_double_space
     check_line_limit
+    # check_bracket?
+    check_file_too_long
+    check_bad_method_name
     # check_def_empty_line_befor
     # check_def_empty_line
   end
@@ -49,9 +53,20 @@ class LinterError
 
   def check_line_limit
     @check_path.file_lines.each_with_index do |val, indx|
-      p val.size
-      @error << "line:#{indx + 1} #{@helper.msg_limit_xter}" if val.size > 80
+      @error << "line:#{indx + 1}: #{@helper.msg_limit_xter}" if val.size > 80
     end
   end
-  
+
+  def check_bad_method_name
+    @check_path.file_lines.each_with_index do |val, indx|
+      if val.strip.split(' ').first.eql?('def') 
+        @error << "line:#{indx + 1}: #{@helper.msg_bad_method_name}" unless val.strip.split(' ')[1].match?(@snake_case)
+      end
+    end
+  end
+
+  def check_file_too_long
+    @error << "Lint/syntax: #{@helper.msg_file_too_long}" if @check_path.lines_count > 118
+  end
+
 end
