@@ -1,16 +1,13 @@
 # Ruby-Linter
 This is a simple application to analyze Ruby code styling error aka Linter
 
+![screenshot](./img/screenshot.png)
+
 <p align="center"> 
-  
 <img src="https://img.shields.io/github/issues/Div685/Ruby-Linter?style=for-the-badge" alt="issues" >
 <img src="https://img.shields.io/github/license/Div685/Ruby-Linter?style=for-the-badge" alt="Licence" >
 <img src="https://img.shields.io/github/issues-pr/Div685/Ruby-Linter?style=for-the-badge" alt="pull request" >
-
-
 </p>
-
-![screenshot](./img/screenshot.png)
 
 ## About The Project
 
@@ -133,6 +130,10 @@ bin/main ./test_file/test_lint_file.rb
 Contributions, issues, and feature requests are welcome!
 
 Feel free to check the [issues page](https://github.com/Div685/Ruby-Linter/issues).
+
+## License
+
+This project is [MIT](https://github.com/Div685/Ruby-Linter/blob/feature/ruby_linter/LICENSE) licensed.
 
 ## Show your support
 
