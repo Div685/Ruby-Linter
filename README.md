@@ -70,6 +70,7 @@ Feel free to check the [issues page](https://github.com/Div685/Ruby-Linter/issue
 Give a ⭐️ if you like this project!
 
 ## Acknowledgements
-
+followed Ruby style guide and selected some of the inspection to analyze the linter file
 - [Ruby Guides](https://www.rubyguides.com/)
 - [Ruby Docs](https://ruby-doc.org/)
+- [Ruby Style Guide](https://rubystyle.guide/)
