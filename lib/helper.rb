@@ -1,4 +1,3 @@
-
 # Helper class for linter_error file
 class Helper
   attr_reader :trailing_space, :class_line, :limit_xter,
