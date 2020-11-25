@@ -1,4 +1,3 @@
-
 # File Reader class
 class FileReader
   attr_reader :err_msg, :file_name, :file_lines, :lines_count
