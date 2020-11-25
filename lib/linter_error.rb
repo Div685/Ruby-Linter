@@ -24,7 +24,6 @@ class LinterError
   end
 
   def run
-    check_bad_file_name
     check_class_empty_line
     check_trailing_space
     check_double_space
@@ -34,6 +33,7 @@ class LinterError
     check_bad_class_name
     check_space_operator
     check_end_file_empty_line
+    check_file_name
   end
 
   def check_trailing_space
@@ -91,12 +91,13 @@ class LinterError
     end
   end
 
-  def check_bad_file_name
-    @error << @helper.bad_filename.to_s unless check_path.file_name.split('/')[-1].match?(@snake_case)
+  def check_file_name
+    file_name  = check_path.file_name.split('/')[-1]
+    @error << @helper.bad_filename.to_s unless file_name.match?(@snake_case)
   end
 
   def check_file_too_long
-    @error << "Lint/syntax: #{@helper.file_too_long}" if @check_path.lines_count > 118
+    @error.push("Lint/syntax: #{@helper.file_too_long}") if @check_path.lines_count > 118
   end
 
   def check_space_operator

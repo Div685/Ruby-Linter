@@ -4,7 +4,6 @@ require 'rainbow'
 require_relative '../lib/linter_error'
 
 lint_error = LinterError.new(ARGV[0])
-lint_error.run
 
 if lint_error.check_path.file_lines.empty?
   puts 'Invalid file name.'
@@ -12,6 +11,8 @@ if lint_error.check_path.file_lines.empty?
 else
   puts 'Hello, Welcome to Ruby Linter'
 end
+
+lint_error.run
 
 if lint_error.error.empty? && lint_error.check_path.err_msg.empty?
   puts Rainbow('No offenses Detected').green
