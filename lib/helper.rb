@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 # Helper class for linter_error file
 class Helper

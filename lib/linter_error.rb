@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # rubocop:disable Lint/RedundantCopDisableDirective
 # rubocop:disable Metrics/CyclomaticComplexity
 # rubocop:disable Metrics/PerceivedComplexity
