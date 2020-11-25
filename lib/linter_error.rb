@@ -92,8 +92,7 @@ class LinterError
   end
 
   def check_file_name
-    file_name  = check_path.file_name.split('/')[-1]
-    @error << @helper.bad_filename.to_s unless file_name.match?(@snake_case)
+    @error << @helper.bad_filename.to_s unless check_path.file_name.split('/')[-1].match?(@snake_case)
   end
 
   def check_file_too_long
