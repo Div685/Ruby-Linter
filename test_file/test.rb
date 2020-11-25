@@ -1,14 +1,16 @@
 
 # rubocop:disable all
-class Test
+class TestName
   def test_method 
     puts ["Test method"
     a = 0, 1,2]
   end
 
-  def test_abc
+  def Test_abc
     puts "Test Method Test Method Test Method Test Method Test Method Test Method Test Method Test Method"
   end
-  
+
 
 end
+
+

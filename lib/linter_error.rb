@@ -8,7 +8,8 @@ class LinterError
     @check_path = FileReader.new(file_path)
     @error = []
     @helper = Helper.new
-    @snake_case = /[a-z]+_+([:lower:]+)*/ #/^[[a-z][[:lower:]]_.?!]+$/.freeze
+    @snake_case = /^[a-z]+_+([:lower:]+)*/ #/^[[a-z][[:lower:]]_.?!]+$/.freeze
+    @camel_case = /(?<!^)[A-Z]/
   end
 
   def run
@@ -17,11 +18,9 @@ class LinterError
     check_end_file_empty_line
     check_double_space
     check_line_limit
-    # check_bracket?
     check_file_too_long
     check_bad_method_name
-    # check_def_empty_line_befor
-    # check_def_empty_line
+    check_bad_class_name
   end
 
   def check_trailing_space
@@ -40,7 +39,10 @@ class LinterError
   end
 
   def check_end_file_empty_line
-    # p @check_path.file_lines[-2]
+    if !@check_path.file_lines.last.match?(/\S/) &&
+      !@check_path.file_lines[-1].gsub(/(["'])(?:(?=(\\?))\2.)*?\1/, '').match?(/\bend\b/)
+     @error << "line:#{@check_path.file_lines.size + 1}: #{@helper.msg_e_line_EOF}"
+    end
   end
 
   def check_double_space
@@ -61,6 +63,14 @@ class LinterError
     @check_path.file_lines.each_with_index do |val, indx|
       if val.strip.split(' ').first.eql?('def') 
         @error << "line:#{indx + 1}: #{@helper.msg_bad_method_name}" unless val.strip.split(' ')[1].match?(@snake_case)
+      end
+    end
+  end
+
+  def check_bad_class_name
+    @check_path.file_lines.each_with_index do |val, indx|
+      if val.strip.split(' ').first.eql?('class') 
+        @error << "line:#{indx + 1}: #{@helper.msg_bad_class_name}" unless val.strip.split(' ')[1].match?(@camel_case)
       end
     end
   end
