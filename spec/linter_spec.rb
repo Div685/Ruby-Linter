@@ -4,7 +4,7 @@ require './lib/file_reader'
 describe LinterError do
   let(:lint_error) { LinterError.new('./test_file/test_lint_file.rb') }
   let(:bad_file_name) { LinterError.new('./test_file/BadFileName.rb') }
- 
+
   describe '#check_trailing_space' do
     it 'checks for trailing space' do
       lint_error.check_trailing_space
@@ -50,7 +50,7 @@ describe LinterError do
       end
     end
   end
-  
+
   describe '#check_space_operator' do
     it 'checks for space before and after the operators' do
       lint_error.check_space_operator
@@ -59,7 +59,7 @@ describe LinterError do
   end
 
   describe '#check_file_too_long' do
-    context 'when line in a file is greater than 118' do 
+    context 'when line in a file is greater than 118' do
       it 'checks for error' do
         bad_file_name.check_file_too_long
         expect(bad_file_name.error[0]).to eql('Lint/syntax: File is too long! use only 118 lines per file.')
@@ -82,5 +82,4 @@ describe LinterError do
       expect(bad_file_name.error[0]).to eql('line:4 Double spaces detected.')
     end
   end
-
 end
