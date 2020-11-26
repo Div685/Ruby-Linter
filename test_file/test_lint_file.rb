@@ -1,6 +1,6 @@
 # rubocop:disable all
 
-class TestName
+class test_Name
   def test_method 
     puts "Test method"
   end

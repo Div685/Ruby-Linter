@@ -1,6 +1,6 @@
 # rubocop:disable all
 
-class BadFileName
+class badFileName
   def test_method 
     puts "Test method"
   end

@@ -19,8 +19,8 @@ class LinterError
     @check_path = FileReader.new(file_path)
     @error = []
     @helper = Helper.new
-    @snake_case = /^[a-z]+_+([:lower:]+)*/ # /^[[a-z][[:lower:]]_.?!]+$/.freeze
-    @camel_case = /(?<!^)[A-Z]/
+    @snake_case = /^[a-z]+_+([:lower:]+)*/
+    @camel_case = /^[A-Z]\w+(?:[A-Z]\w+){1,}/
   end
 
   def run
