@@ -1,3 +1,5 @@
+# rubocop:disable Lint/NonLocalExitFromIterator
+
 require_relative 'file_reader'
 require_relative 'helper'
 
@@ -99,3 +101,5 @@ class LinterError
     end
   end
 end
+
+# rubocop:enable Lint/NonLocalExitFromIterator
