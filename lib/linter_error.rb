@@ -39,7 +39,7 @@ class LinterError
   def check_trailing_space
     @check_path.file_lines.each_with_index do |val, indx|
       if val[-2] == ' ' && !val.strip.empty?
-        @error << "line:#{indx + 1}:#{val.size - 1}: #{@helper.trailing_space}" + " '#{val.gsub(/\s*$/, '_')}'"
+        @error << "line:#{indx + 1}:#{val.size - 1}: #{@helper.trailing_space} #{val.gsub(/\s*$/, '_')}"
       end
     end
   end
