@@ -13,6 +13,16 @@ This is a simple application to analyze Ruby code styling error aka Linter
 
 This is the Ruby-Capstone Project. Main goal for this project was to build My own Linter Using Ruby language. It is a simple application to analyze Ruby code behavior and checks if the coding style is good or bad if it's bad then it will show the errors.
 
+## Table of Content
+- [About The Project](#about-the-project)
+- [Types of Inspections](#types-of-inspections)
+- [Built with](#built-with)
+- [Comparision of Good and Bad code](#comparision-of-good-and-bad-code)
+- [Getting Started](#getting-started)
+- [License](#license)
+- [Authors](#authors)
+- [Acknowledgements](#acknowledgements)
+
 ## Types of Inspections
 
 I have used following types of inspections to analyze style error
@@ -88,14 +98,65 @@ def method_name|
 end
 ```
 
+#### Extra empty line at the bottom of the file
+```
+# bad
+class ClassName
+end
+
+ | <-- only one empty line require
+
+# good
+class ClassName
+end
+ |
+```
+
+#### File too long
+```
+# bad
+3   class ClassName
+      ~~~~~~~~~~~~~~
+      ~~~~~~~
+150 end | <-- should be less than 118 lines
+
+# good 
+3   class ClassName
+      ~~~~~~~
+      ~~~~~~~
+90  end 
+```
+#### Line too long
+```
+# bad
+3   puts 'This is line ~~~~~~~~~~~' | <-- total characters in line > 80 
+
+# good
+
+3 puts ' This is line ~~' | <-- Total characters in line < 80
+```
+
+### Empty line at top of the class
+```
+# bad
+1   | <-- Empty line not rquired
+
+4   class ClassName
+      ~~~~~~
+30  end
+
+# good
+1   require 'file_name'
+
+3   class ClassName
+      ~~~~~
+30  end
+```
 
 ## Built With
 
 - Ruby
 
-## Live Demo
-
-[Live Demo Link](https://repl.it/@Div685/Ruby-Linter)
 
 ## Getting Started
 
@@ -106,7 +167,7 @@ To get a local copy up and running follow these simple steps.
 ```
 git clone https://github.com/Div685/Ruby-Linter.git
 ```
-- After cloning you need to install some of the required dependencies using the following command:
+- After cloning navigate to the folder, you will need to install some of the required dependencies using the following command:
 
 ```
 bundle install
@@ -115,7 +176,9 @@ bundle install
 ``` 
 bin/main ./test_file/test_lint_file.rb
 ```
-
+**To test the code with rspec.**
+  - install rspec using `gem install rspec` 
+  - run `rspec` or `rspec --format doc` on your terminal to test the code .
 
 ## Author
 
