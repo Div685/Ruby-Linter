@@ -1,10 +1,5 @@
 # rubocop:disable Lint/RedundantCopDisableDirective
-# rubocop:disable Metrics/CyclomaticComplexity
-# rubocop:disable Metrics/PerceivedComplexity
 # rubocop:disable Metrics/AbcSize
-# rubocop:disable Style/For
-# rubocop:disable Style/CaseLikeIf
-# rubocop:disable Style/FrozenStringLiteralComment
 # rubocop:disable Style/SoleNestedConditional
 # rubocop:disable Lint/NonLocalExitFromIterator
 
@@ -86,7 +81,8 @@ class LinterError
   def check_bad_class_name
     @check_path.file_lines.each_with_index do |val, indx|
       if val.strip.split(' ').first.eql?('class')
-        @error << "line:#{indx + 1}: #{@helper.class_name}" unless val.strip.split(' ')[1].match?(@camel_case)
+        name_val = val.strip.split(' ')[1]
+        @error << "line:#{indx + 1}: #{@helper.class_name}" unless !name_val.match?(/_/) && name_val.match?(@camel_case)
       end
     end
   end
@@ -109,12 +105,7 @@ class LinterError
   end
 end
 
-# rubocop:enable Metrics/CyclomaticComplexity
-# rubocop:enable Metrics/PerceivedComplexity
 # rubocop:enable Metrics/AbcSize
-# rubocop:enable Style/For
-# rubocop:enable Style/CaseLikeIf
-# rubocop:enable Style/FrozenStringLiteralComment
 # rubocop:enable Style/SoleNestedConditional
 # rubocop:enable Lint/NonLocalExitFromIterator
 # rubocop:enable Lint/RedundantCopDisableDirective
