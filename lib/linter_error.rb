@@ -1,8 +1,3 @@
-# rubocop:disable Lint/RedundantCopDisableDirective
-# rubocop:disable Metrics/AbcSize
-# rubocop:disable Style/SoleNestedConditional
-# rubocop:disable Lint/NonLocalExitFromIterator
-
 require_relative 'file_reader'
 require_relative 'helper'
 
@@ -104,8 +99,3 @@ class LinterError
     end
   end
 end
-
-# rubocop:enable Metrics/AbcSize
-# rubocop:enable Style/SoleNestedConditional
-# rubocop:enable Lint/NonLocalExitFromIterator
-# rubocop:enable Lint/RedundantCopDisableDirective
